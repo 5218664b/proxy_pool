@@ -50,6 +50,9 @@ class MongodbClient(object):
     def getAll(self):
         return {p['proxy']: p['num'] for p in self.db[self.name].find()}
 
+    def getAllUserAgent(self):
+        return [p['useragent'] for p in self.db[self.name].find()]
+
     def clean(self):
         self.client.drop_database('proxy')
 

@@ -21,6 +21,7 @@ sys.path.append('../')
 
 from Config.ConfigGetter import config
 from Manager.ProxyManager import ProxyManager
+from Manager.UserAgentManager import UserAgentManager
 
 app = Flask(__name__)
 
@@ -50,11 +51,15 @@ def index():
     return api_list
 
 
-@app.route('/get/')
+@app.route('/get/proxy')
 def get():
     proxy = ProxyManager().get()
     return proxy if proxy else 'no proxy!'
 
+@app.route('/get/useragent')
+def get_useragent():
+    useragent = UserAgentManager().get()
+    return useragent if useragent else 'no proxy!'
 
 @app.route('/refresh/')
 def refresh():
